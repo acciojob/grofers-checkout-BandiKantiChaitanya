@@ -1,6 +1,9 @@
 // Select the table where we want to calculate the sum
 const table = document.getElementById('grocery-table');
 
+// Select the button to trigger the calculation
+const calculateButton = document.getElementById('calculate-btn');
+
 // Function to calculate the total price and add a new row
 function calculateTotal() {
   const prices = document.querySelectorAll('.price'); // Select all the elements with class "price"
@@ -12,18 +15,10 @@ function calculateTotal() {
     totalPrice += price;
   });
 
-  // Create a new row for the total price
-  const newRow = document.createElement('tr');
-  const totalCell = document.createElement('td'); // Create a cell for the total price
-  totalCell.setAttribute('colspan', 2); // Set the colspan to make it span across both columns
-  totalCell.innerText = 'Total: ₹' + totalPrice;
-
-  // Append the total price cell to the new row
-  newRow.appendChild(totalCell);
-
-  // Append the new row to the table
-  table.appendChild(newRow);
+  // Show the total price in the 'ans' div
+  const totalElement = document.getElementById('ans');
+  totalElement.innerText = 'Total: ₹' + totalPrice;
 }
 
-// Call the function to calculate and display the total price
-calculateTotal();
+// Attach the event listener to the button to calculate total price
+calculateButton.addEventListener('click', calculateTotal);
